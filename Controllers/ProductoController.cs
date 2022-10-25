@@ -14,11 +14,12 @@ namespace ApiCoderFranco.Controllers
             _productoRepository = new ProductoRepository();
         }
         [HttpGet("GetProductos")]
-        public ActionResult GetProductos()
+        public IActionResult GetProductos([FromQuery] int idUser)
         {
-            var resultado = _productoRepository.GetProductos();
+            var resultado = _productoRepository.GetProductos(idUser);
             return Ok(resultado);
         }
     }
+    }
     
-}
+

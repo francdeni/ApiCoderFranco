@@ -29,9 +29,9 @@
             
         }
         #endregion
-        public List<Venta> GetVentas()
-        {
-            return new List<Venta>();
-        }
+        //public List<Venta> GetVentas()
+        //{
+        //    return new List<Venta>();
+        //}
     }
 }

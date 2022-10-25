@@ -19,16 +19,24 @@ namespace ApiCoderFranco.Controllers
         {
             _usuarioRepository = new UsuarioRepository();
         }
-        [HttpGet("GetUsuarios/{id}")]
-        public IActionResult Get([FromQuery] QueryParameters parameters)
-        => Ok(new[] { parameters.Id,});
-
-
-
-        public ActionResult GetUsuarios()
+        [HttpGet("GetUsuarios")]
+        public IActionResult GetUsuarios([FromQuery] int id)
         {
-            var resultado = _usuarioRepository.GetUsuarios();
+            var resultado = _usuarioRepository.GetUsuarios(id);
             return Ok(resultado);
         }
+
+        //public IActionResult Get([FromQuery] int id) {
+        //    var resultado = _usuarioRepository.GetUsuarios(id);
+        //    return Ok(resultado);
+        //}
+
+
+
+        //public ActionResult GetUsuarios()
+        //{
+        //    var resultado = _usuarioRepository.GetUsuarios();
+        //    return Ok(resultado);
+        //}
     }
-}
+    }

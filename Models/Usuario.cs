@@ -38,10 +38,10 @@
 
         }
         #endregion
-        public List<Usuario> GetUsuarios()
-        {
-            return new List<Usuario>();
-        } 
+        //public List<Usuario> GetUsuarios()
+        //{
+        //    return new List<Usuario>();
+        //} 
         
     }
 }

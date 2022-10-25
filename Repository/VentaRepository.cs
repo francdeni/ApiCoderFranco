@@ -5,12 +5,12 @@ namespace ApiCoderFranco.Repository
 {
     public class VentaRepository
     {
-        public List<Venta> GetVentas()
+        public List<Venta> GetVentas(int idUser)
         {
             var list = new List<Venta>();
             SqlConnectionStringBuilder conecctionbuilder = new();
-            conecctionbuilder.DataSource = "DESKTOP-MALR5B3\\SQLEXPRESS";
-            conecctionbuilder.InitialCatalog = "master";
+            conecctionbuilder.DataSource = "LAPTOP-MN1MMSQO\\SQLEXPRESS";
+            conecctionbuilder.InitialCatalog = "SistemaGestion";
             conecctionbuilder.IntegratedSecurity = true;
             var cs = conecctionbuilder.ConnectionString;
 
@@ -18,7 +18,12 @@ namespace ApiCoderFranco.Repository
             {
                 connection.Open();
                 SqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = "SELECT * FROM Venta";
+                cmd.CommandText = "SELECT * FROM Venta where IdUsuario = @IdUsuario";
+                var parametro = new SqlParameter();
+                parametro.ParameterName = "IdUsuario";
+                parametro.SqlDbType = System.Data.SqlDbType.BigInt;
+                parametro.Value = idUser;
+                cmd.Parameters.Add(parametro);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {

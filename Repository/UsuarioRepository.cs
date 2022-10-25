@@ -5,17 +5,17 @@ namespace ApiCoderFranco.Repository
 {
     public class UsuarioRepository
     {
-        private object parameters;
 
-        public List<Usuario> GetUsuarios()
+
+        public List<Usuario> GetUsuarios(int id)
         {
             var list = new List<Usuario>();
             SqlConnectionStringBuilder conecctionbuilder = new();
-            conecctionbuilder.DataSource = "DESKTOP-MALR5B3\\SQLEXPRESS";
-            conecctionbuilder.InitialCatalog = "master";
+            conecctionbuilder.DataSource = "LAPTOP-MN1MMSQO\\SQLEXPRESS";
+            conecctionbuilder.InitialCatalog = "SistemaGestion";
             conecctionbuilder.IntegratedSecurity = true;
             var cs = conecctionbuilder.ConnectionString;
-
+            
             using (SqlConnection connection = new SqlConnection(cs))
             {
                 connection.Open();
@@ -24,7 +24,7 @@ namespace ApiCoderFranco.Repository
                 var parametro = new SqlParameter();
                 parametro.ParameterName = "IdUsuario";
                 parametro.SqlDbType = System.Data.SqlDbType.BigInt;
-                parametro.Value = parameters;
+                parametro.Value = id;
                 cmd.Parameters.Add(parametro);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())

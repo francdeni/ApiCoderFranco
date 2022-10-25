@@ -39,9 +39,9 @@
 
         }
         #endregion
-        public List<Producto> GetProductos()
-        {
-            return new List<Producto>();
-        }
+        //public List<Producto> GetProductos()
+        //{
+        //    return new List<Producto>();
+        //}
     }
 }

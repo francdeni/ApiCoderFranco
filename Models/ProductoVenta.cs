@@ -33,9 +33,9 @@
 
         }
         #endregion
-        public List<ProductoVenta> GetProdVentas()
-        {
-            return new List<ProductoVenta>();
-        }
+        //public List<ProductoVenta> GetProdVentas()
+        //{
+        //    return new List<ProductoVenta>();
+        //}
     }
 }
