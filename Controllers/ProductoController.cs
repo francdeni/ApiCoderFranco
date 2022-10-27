@@ -1,4 +1,5 @@
-﻿using ApiCoderFranco.Repository;
+﻿using ApiCoderFranco.Models;
+using ApiCoderFranco.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,26 @@ namespace ApiCoderFranco.Controllers
             var resultado = _productoRepository.GetProductos(idUser);
             return Ok(resultado);
         }
+
+        [HttpPost("NewProductos")]
+        public void NewProducto([FromBody] Producto newprod)
+        {
+            ProductoRepository.NewProducto(newprod);
+        }
+        [HttpPut("UpdateProductos")]
+        public void UpdateProd([FromBody] Producto prod)
+        {
+            ProductoRepository.UpdateProd(prod);
+        }
+
+        [HttpDelete("UpdateProductos")]
+        public void DeleteProd([FromBody] int id)
+        {
+            ProductoRepository.DeleteProd(id);
+        }
+
+
     }
-    }
+}
     
 

@@ -1,4 +1,5 @@
-﻿using ApiCoderFranco.Repository;
+﻿using ApiCoderFranco.Models;
+using ApiCoderFranco.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +7,7 @@ namespace ApiCoderFranco.Controllers
 {    
     [ApiController]
     [Route("api/[controller]")]
-    public class QueryParameters
-    { 
-    public int Id { get; set; } 
-    }
+    
 
 
     public class UsuarioController : ControllerBase
@@ -26,17 +24,21 @@ namespace ApiCoderFranco.Controllers
             return Ok(resultado);
         }
 
-        //public IActionResult Get([FromQuery] int id) {
-        //    var resultado = _usuarioRepository.GetUsuarios(id);
-        //    return Ok(resultado);
-        //}
+        //[HttpDelete("DeleteUsuarios")] no es parte de la entrega
 
-
-
-        //public ActionResult GetUsuarios()
+        //public void DeleteUsuario([FromBody] int id)
         //{
-        //    var resultado = _usuarioRepository.GetUsuarios();
-        //    return Ok(resultado);
+        //    UsuarioRepository.DeleteUsuario(id);
         //}
+
+        [HttpPut("UpdateUsuarios")]
+
+        public void UpdateUsuario([FromBody] Usuario user)
+        {
+            UsuarioRepository.UpdateUsuario(user);
+        }
+
+
+
     }
-    }
+ }
