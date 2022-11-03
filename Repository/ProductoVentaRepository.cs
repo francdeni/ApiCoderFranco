@@ -9,8 +9,8 @@ namespace ApiCoderFranco.Repository
         {
             var list = new List<ProductoVenta>();
             SqlConnectionStringBuilder conecctionbuilder = new();
-            conecctionbuilder.DataSource = "LAPTOP-MN1MMSQO\\SQLEXPRESS";
-            conecctionbuilder.InitialCatalog = "SistemaGestion";
+            conecctionbuilder.DataSource = "DESKTOP-MALR5B3\\SQLEXPRESS";
+            conecctionbuilder.InitialCatalog = "master";
             conecctionbuilder.IntegratedSecurity = true;
             var cs = conecctionbuilder.ConnectionString;
 

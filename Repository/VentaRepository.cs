@@ -1,4 +1,5 @@
 ﻿using ApiCoderFranco.Models;
+using Microsoft.OpenApi.Writers;
 using System.Data.SqlClient;
 
 namespace ApiCoderFranco.Repository
@@ -37,6 +38,56 @@ namespace ApiCoderFranco.Repository
                 }
 
                 return list;
+            }
+
+        }
+        public static void NewVenta(List<ProductoVenta> productList,int idUser,string comentario)
+        {
+            SqlConnectionStringBuilder conecctionbuilder = new();
+            conecctionbuilder.DataSource = "DESKTOP-MALR5B3\\SQLEXPRESS";
+            conecctionbuilder.InitialCatalog = "master";
+            conecctionbuilder.IntegratedSecurity = true;
+            var cs = conecctionbuilder.ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(cs))
+            {
+                connection.Open();
+                SqlCommand cmd = connection.CreateCommand();
+                SqlCommand cmd2 = connection.CreateCommand();
+                SqlCommand cmd3 = connection.CreateCommand();
+                cmd.CommandText = "INSERT INTO Venta VALUES((SELECT MAX(Id) FROM Venta)+1,@comentario,@idUser)";
+
+                var paramComment = new SqlParameter();
+                paramComment.ParameterName = "comentario";
+                paramComment.SqlDbType = System.Data.SqlDbType.VarChar;
+                paramComment.Value = comentario;
+                cmd.Parameters.Add(paramComment);
+                
+                var paramUser = new SqlParameter();
+                paramUser.ParameterName = "idUser";
+                paramUser.SqlDbType = System.Data.SqlDbType.Int;
+                paramUser.Value = idUser;
+                cmd.Parameters.Add(paramUser);
+
+                cmd.ExecuteNonQuery();
+
+                
+                cmd2.CommandText = "INSERT INTO ProductoVendido VALUES";
+                
+                foreach (var item in productList)
+                {
+                    cmd2.CommandText += "((SELECT MAX(ID) FROM ProductoVendido)+1," + Convert.ToString(item.Stock) + "," + Convert.ToString(item.IdProducto) + "," + Convert.ToString(item.IdVenta) + "),";
+                    cmd3.CommandText = "UPDATE Producto SET STOCK = STOCK - " + Convert.ToString(item.Stock) + "WHERE IDPRODUCTO = " + Convert.ToString(item.IdProducto);
+                    cmd3.ExecuteNonQuery();
+        //private int _id;
+        //private int _stock;
+        //private int _idproducto;
+        //private int _idventa;
+
+                }
+                cmd2.CommandText.Remove(0, cmd2.CommandText.Length - 1);
+                cmd2.ExecuteNonQuery();
+                connection.Close();
             }
 
         }

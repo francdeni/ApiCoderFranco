@@ -1,4 +1,5 @@
-﻿using ApiCoderFranco.Repository;
+﻿using ApiCoderFranco.Models;
+using ApiCoderFranco.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,13 @@ namespace ApiCoderFranco.Controllers
         {
             var resultado = _ventaRepository.GetVentas(idUser);
             return Ok(resultado);
+        }
+
+        [HttpPost("NewVenta")]
+        public void NewVenta([FromQuery] List<ProductoVenta> productList,int idUser,string comentario)
+        {
+            VentaRepository.NewVenta(productList,idUser,comentario);
+            
         }
     }
 }
