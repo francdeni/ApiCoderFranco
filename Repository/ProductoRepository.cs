@@ -58,11 +58,11 @@ namespace ApiCoderFranco.Repository
             {
                 connection.Open();
                 SqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = "Insert into Producto (@Id,@Descripciones,@Costo,@PrecioVenta,@Stock,@IdUsu)";
-                var paramId = new SqlParameter();
-                paramId.ParameterName = "Id";
-                paramId.SqlDbType = System.Data.SqlDbType.BigInt;
-                paramId.Value = newprod.Id;
+                cmd.CommandText = "Insert into Producto ((SELECT @@IDENTITY FROM Producto)+1,@Descripciones,@Costo,@PrecioVenta,@Stock,@IdUsu)";
+                //var paramId = new SqlParameter();
+                //paramId.ParameterName = "Id";
+                //paramId.SqlDbType = System.Data.SqlDbType.BigInt;
+                //paramId.Value = newprod.Id;
 
                 var paramDesc = new SqlParameter();
                 paramDesc.ParameterName = "Descripciones";
