@@ -55,7 +55,7 @@ namespace ApiCoderFranco.Repository
                 SqlCommand cmd = connection.CreateCommand();
                 SqlCommand cmd2 = connection.CreateCommand();
                 SqlCommand cmd3 = connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO Venta VALUES((SELECT @@IDENTITY FROM Venta)+1,@comentario,@idUser)";
+                cmd.CommandText = "INSERT INTO Venta VALUES(@comentario,@idUser)";
 
                 var paramComment = new SqlParameter();
                 paramComment.ParameterName = "comentario";
@@ -76,7 +76,7 @@ namespace ApiCoderFranco.Repository
                 
                 foreach (var item in productList)
                 {
-                    cmd2.CommandText += "((SELECT @@IDENTITY FROM ProductoVendido)+1," + Convert.ToString(item.Stock) + "," + Convert.ToString(item.IdProducto) + "," + Convert.ToString(item.IdVenta) + "),";
+                    cmd2.CommandText += "("+Convert.ToString(item.Stock) + "," + Convert.ToString(item.IdProducto) + "," + Convert.ToString(item.IdVenta) + "),";
                     cmd3.CommandText = "UPDATE Producto SET STOCK = STOCK - " + Convert.ToString(item.Stock) + "WHERE IDPRODUCTO = " + Convert.ToString(item.IdProducto);
                     cmd3.ExecuteNonQuery();
         //private int _id;
