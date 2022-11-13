@@ -17,7 +17,7 @@ namespace ApiCoderFranco.Controllers
         [HttpGet("GetProductos")]
         public IActionResult GetProductos([FromQuery] int idUser)
         {
-            var resultado = _productoRepository.GetProductos(idUser);
+            var resultado = ProductoRepository.GetProductos(idUser);
             return Ok(resultado);
         }
 

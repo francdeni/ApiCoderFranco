@@ -6,12 +6,12 @@ namespace ApiCoderFranco.Repository
 {
     public class ProductoRepository
     {
-        public List<Producto> GetProductos(int idUser)
+        public static List<Producto> GetProductos(int idUser)
         {
             var list = new List<Producto>();
             SqlConnectionStringBuilder conecctionbuilder = new();
-            conecctionbuilder.DataSource = "LAPTOP-MN1MMSQO\\SQLEXPRESS";
-            conecctionbuilder.InitialCatalog = "SistemaGestion";
+            conecctionbuilder.DataSource = "DESKTOP-MALR5B3\\SQLEXPRESS";
+            conecctionbuilder.InitialCatalog = "master";
             conecctionbuilder.IntegratedSecurity = true;
             var cs = conecctionbuilder.ConnectionString;
 
@@ -50,8 +50,8 @@ namespace ApiCoderFranco.Repository
         public static void NewProducto(Producto newprod)
         {
             SqlConnectionStringBuilder conecctionbuilder = new();
-            conecctionbuilder.DataSource = "LAPTOP-MN1MMSQO\\SQLEXPRESS";
-            conecctionbuilder.InitialCatalog = "SistemaGestion";
+            conecctionbuilder.DataSource = "DESKTOP-MALR5B3\\SQLEXPRESS";
+            conecctionbuilder.InitialCatalog = "master";
             conecctionbuilder.IntegratedSecurity = true;
             var cs = conecctionbuilder.ConnectionString;
             using (SqlConnection connection = new SqlConnection(cs))
@@ -89,7 +89,7 @@ namespace ApiCoderFranco.Repository
                 paramIdUsu.SqlDbType = System.Data.SqlDbType.VarChar;
                 paramIdUsu.Value = newprod.IdUsuario;
 
-                cmd.Parameters.Add(paramId);
+                
                 cmd.Parameters.Add(paramDesc);
                 cmd.Parameters.Add(paramCosto);
                 cmd.Parameters.Add(paramPreVen);
@@ -105,8 +105,8 @@ namespace ApiCoderFranco.Repository
         public static void UpdateProd(Producto newprod)
         {
             SqlConnectionStringBuilder conecctionbuilder = new();
-            conecctionbuilder.DataSource = "LAPTOP-MN1MMSQO\\SQLEXPRESS";
-            conecctionbuilder.InitialCatalog = "SistemaGestion";
+            conecctionbuilder.DataSource = "DESKTOP-MALR5B3\\SQLEXPRESS";
+            conecctionbuilder.InitialCatalog = "master";
             conecctionbuilder.IntegratedSecurity = true;
             var cs = conecctionbuilder.ConnectionString;
             using (SqlConnection connection = new SqlConnection(cs))
@@ -157,8 +157,8 @@ namespace ApiCoderFranco.Repository
         public static void DeleteProd(int id)
         {
             SqlConnectionStringBuilder conecctionbuilder = new();
-            conecctionbuilder.DataSource = "LAPTOP-MN1MMSQO\\SQLEXPRESS";
-            conecctionbuilder.InitialCatalog = "SistemaGestion";
+            conecctionbuilder.DataSource = "DESKTOP-MALR5B3\\SQLEXPRESS";
+            conecctionbuilder.InitialCatalog = "master";
             conecctionbuilder.IntegratedSecurity = true;
             var cs = conecctionbuilder.ConnectionString;
             using (SqlConnection connection = new SqlConnection(cs))

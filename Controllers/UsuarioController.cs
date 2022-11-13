@@ -20,8 +20,16 @@ namespace ApiCoderFranco.Controllers
         [HttpGet("GetUsuarios")]
         public IActionResult GetUsuarios([FromQuery] int id)
         {
-            var resultado = _usuarioRepository.GetUsuarios(id);
+            var resultado = UsuarioRepository.GetUsuarios(id);
             return Ok(resultado);
+        }
+
+        [HttpGet("{nombreUsuario}/{contraseña}")]
+        public Usuario GetUsuarioByContraseña(string nombreUsuario, string contraseña)
+        {
+            var usuario = UsuarioRepository.Getlogin(nombreUsuario, contraseña);
+
+            return usuario == null ? new Usuario() : usuario;
         }
 
         //[HttpDelete("DeleteUsuarios")] no es parte de la entrega
@@ -38,7 +46,19 @@ namespace ApiCoderFranco.Controllers
             UsuarioRepository.UpdateUsuario(user);
         }
 
+        [HttpPost]
+        public void CreateUsuario(Usuario usuario)
+        {
+            UsuarioRepository.CreateUsuario(usuario);
+        }
 
+        [HttpGet("{nombreUsuario}")]
+        public Usuario GetUsuarioByNombre(string nombreUsuario)
+        {
+            var usuario = UsuarioRepository.GetUsuarioByNombre(nombreUsuario);
+
+            return usuario == null ? new Usuario() : usuario;
+        }
 
     }
  }

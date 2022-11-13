@@ -14,9 +14,9 @@ namespace ApiCoderFranco.Controllers
             _productoVentaRepository = new ProductoVentaRepository();
         }
         [HttpGet("GetProdVentas")]
-        public ActionResult GetProdVentas()
+        public  IActionResult GetProdVentas([FromQuery] int idUser)
         {
-            var resultado = _productoVentaRepository.GetProdVentas();
+            var resultado = ProductoVentaRepository.GetProdVentas(idUser);
             return Ok(resultado);
         }
     }
